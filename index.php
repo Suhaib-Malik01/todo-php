@@ -1,25 +1,14 @@
 <?php 
 
-$server = "127.0.0.1:3307";
-$username = "root";
-$password = "";
-$database = "todo";
-
-$con = mysqli_connect($server,$username,$password,$database);
-
+include "./dbConfig.php";
 $heading = "";
-
-$show = true;
 
 
 if(isset($_POST["title"])){
 
-
     $taskTitle = $_POST['title'];
 
     $description = $_POST['description'];
-
-   
 
 
     if(!$con){
@@ -59,19 +48,14 @@ if(isset($_POST["title"])){
 </head>
 <body>
 <div class="min-vh-100 border-primary d-flex flex-column align-items-center"  id="container">
-    <h4 class="mt-2"><?php echo "$heading" ?></h4>
+    <h4 class="mt-2"><?php $heading ?></h4>
     <form method="POST" action="index.php" class="d-flex flex-column w-25 gap-3 pt-4">
         <div>
         <h5>Title</h5>
         <input type="text" name="title" class="form-control w-100 rounded">
         </div>
         <div>
-        <?php if($show) {?>
-
         <h5>Discription</h5>
-
-        <?php } ?>
-        
         <input name="description" class="form-control w-100 rounded border-2"/>
         </div>
         <button name="btn" class="btn btn-primary">Add Task</button>
@@ -97,12 +81,6 @@ if(isset($_POST["title"])){
         </form>
         </div>';
         }
-
-        $arr = array();
-
-        $obj = {};
-
-        
 
         if(isset($_POST['delete'])){
 
